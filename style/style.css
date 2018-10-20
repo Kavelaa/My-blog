@@ -1,0 +1,347 @@
+@keyframes mymove
+{
+    0% {
+        background-position: 0% 0%; }
+    50% {
+        background-position: 0% 100%; }
+    100% {
+         background-position: 0% 0%; }
+}
+
+@keyframes boxhover{
+    0%{
+        background-size: 100% 100%;
+    }
+    100%{
+        background-size: 135% 135%;
+    }
+}
+
+body{
+    margin:0;
+    font-family: 'SimHei', cursive;
+}
+
+@media screen and (max-width:1080px){
+    body{
+        font-size:0.45rem;
+    }
+}
+
+a:visited{
+    color:inherit;
+}
+
+h1{
+    margin:0;
+    font-weight:normal;
+    font-size: 4.1em;
+    text-align: center;
+    font-family: 'Maven Pro','SimHei', sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+h2{
+    font-size:3.5em;
+    font-weight: 200;
+    font-family: 'Maven Pro', sans-serif;
+    text-align: center;
+    padding:0.8em;
+    margin:0;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+
+
+
+/*导航栏*/
+header{
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    box-sizing: border-box;
+    width:100%;
+    line-height:6em;
+    padding-left:5%;
+    color:white;
+    transition: background-color 1s, line-height 1s ease, height 1s ease;
+    -webkit-transition: background-color 1s, line-height 1s ease, height 1s ease;
+}
+
+@media screen and (max-width:1080px){
+    header{
+        height:7vh;
+        line-height:7vh;
+        background:rgba(255,255,255,0.9);
+        color:black;
+    }
+    header h1{
+        font-size:2em;
+    }
+}
+
+header a{
+    text-decoration: none;
+    cursor: pointer;
+    color:inherit;
+}
+
+header h1{
+    transition: font-size 1s ease;
+    -webkit-transition: font-size 1s ease;
+}
+
+.index-l{
+    float:left;
+    width:auto;
+    box-sizing: border-box;
+    margin-left: 2em;
+    text-align: center;
+}
+
+.index-l a:hover{
+    color:rgba(197, 197, 197, 0.7);
+}
+
+#blog h1{
+    font-size: 2.3em;
+    height:100%;
+}
+
+#ad{
+    position: relative;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 0.8em;
+    float:right;
+    -webkit-user-select: none;
+    line-height: 7vh;
+    margin-right:7%;
+    padding:0 20px;
+    color:rgba(255, 255, 255, 0);
+    background: rgba(37, 42, 47, 0);
+    transition: background-color 0.6s ease, height 0.6s ease, color 0.6s ease 0.5s, width 0.6s ease;
+    -webkit-transition: background-color 0.6s ease, height 0.6s ease, color 0.6s ease 0.5s, width 0.6s ease;
+}
+
+#ad-img{
+    position: absolute;
+    top:100%;
+    left:-60%;
+}
+
+@media screen and (max-width:1080px) {
+    #blog h1{
+        font-size: 1.2em;
+    }
+    #ad{
+        background: rgba(37, 42, 47, 1);
+        height:100%;
+        color:white;
+        margin-right:0;
+    }
+}
+
+
+
+/*隔断*/
+.over{
+    clear: both;
+}
+
+
+
+/*main*/
+/*欢迎页（banner）*/
+#welcomePage{
+    height: 100vh;
+    background: url(../images/山.jpg);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+#welcomePage h1,#welcomePage p{
+    position: relative;
+    top:27%;
+    text-align: center;
+    color:rgb(255, 255, 255);
+    -webkit-user-select: none;
+}
+
+#welcomePage h1{
+    font-size: 5.2em;
+    padding:0.5em;
+    clear: both;
+}
+
+#welcomePage p{
+    font-size: 2em;
+    padding:1.2em;
+    margin:0;
+    cursor: default;
+}
+
+#welcomePage a:hover{
+    color:rgba(255, 255, 255, 0.6);
+}
+
+#welcomePage a{
+    color:rgb(255, 255, 255);
+}
+
+
+
+
+/*内容页*/
+#contentPage{
+    min-height:120vh;
+    background:rgb(252, 25, 25);
+    background: linear-gradient(to bottom, #f81e1e, #9314b9, #5511d3,
+    #3c0d88,#5511d3,#9314b9,#f81e1e);
+    background-size:100% 600%;
+    animation:mymove 90s ease infinite;
+    -webkit-animation: mymove 90s ease infinite;
+    -moz-animation: mymove 90s ease infinite;
+}
+/*个人介绍*/
+#introduce{
+    text-align: center;
+    padding:1.2em 0;
+    background: white;
+}
+
+#introduce p{
+    font-size:1.2em;
+    padding:1em;
+    margin:0;
+}
+
+/*主内容*/
+#myWorks{
+    color:white;
+}
+/*欢迎页作品导航栏*/
+.index-r{
+    box-sizing:border-box;
+    padding:30px 0;
+    height:auto;
+    line-height: auto;
+}
+
+.index-r a{
+    text-decoration: none;
+}
+
+.index-r > h2{
+    float: left;
+    padding:1em 1em 1em 2em;
+}
+
+.index-box{
+    float:left;
+    border-radius: 12px;
+    margin:0 15px;
+    padding:1em 0;
+    width: auto;
+}
+
+.index-box:hover{
+    animation:boxhover 5s ease infinite;
+    -webkit-animation: boxhover 5s ease infinite;
+    -moz-animation: boxhover 5s ease infinite;
+}
+
+#box1{
+    background-image: url(../images/index-drizzle.png);
+    background-size: 100% 100%;
+    color:rgb(151, 253, 120);
+}
+
+#box1 a{
+    color:rgb(151, 253, 120);
+}
+
+#box1 a :visited{
+    color:rgb(151, 253, 120);
+}
+
+/*图片预览*/
+#display-img{
+    margin:0;
+    width:47%;
+    border-radius: 10px;
+}
+
+
+
+
+/*做事的依据*/
+.belief{
+    color:white;
+    background: black;
+    text-align: center;
+    padding:1.2em 0;
+}
+
+.belief p{
+    font-size:1.2em;
+    padding:1em;
+    margin:0;
+}
+
+
+
+
+/*页脚*/
+footer{
+    margin:0;
+    padding-top:5rem;
+    text-align: center;
+    background: rgb(61, 24, 129);
+}
+
+footer p{
+    color:white;
+    margin:0;
+    font-family: 'Maven Pro', sans-serif;
+}
+
+footer a{
+    font-size: 0.83em;
+    font-weight: 100;
+    color:rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-family: 'Maven Pro', sans-serif;
+}
+
+.footerDiv{
+    float:right;
+    box-sizing: border-box;
+    height:4em;
+    line-height: 2em;
+    padding:1em 1.4em;
+    color:white;
+    font-size: 1em;
+    font-family: 'Maven Pro';
+}
+
+#aliyun{
+    background: #252a2f;
+}
+
+#brave{
+    background: white;
+}
+
+#braveReferral{
+    float:right;
+    height:4em;
+}
+
+.copyright{
+    border-top:1px solid rgba(255, 255, 255, 0.2);
+}
