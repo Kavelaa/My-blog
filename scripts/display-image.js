@@ -1,14 +1,24 @@
-var drizzle = document.querySelector('#box1');
-var display1 = document.querySelector('.index-r');
-var header = document.querySelector('header');
-var ad = document.querySelector('#ad');
-var blog = document.querySelector('#welcomePage');
-var oldwidth;
+var oldwidth; //Global for ad.offsetWidth
 
 function headerChange() {
     window.onscroll = function() {    
         var h1 = document.querySelectorAll('header h1');
-        
+        var ad = document.getElementById('ad');
+        var header = document.getElementsByTagName('header')[0];
+        /*var head = new Vue({
+            el:'header',
+            data:{
+                seen:false
+            },
+            methods:{
+                mouseOver:function() {
+                    this.seen = true;
+                },
+                mouseOut:function() {
+                    this.seen = false;
+                }
+            }
+        })*/
         ad.onmouseover = function() {
             if(document.querySelectorAll('#ad-img').length === 0){
                 var img = document.createElement('img');
@@ -19,7 +29,6 @@ function headerChange() {
         }
         ad.onmouseout = function() {
             var img = document.querySelector('#ad-img');
-            if(document.querySelectorAll('#ad-img').length > 0)
             ad.removeChild(img);
         }
 
@@ -52,25 +61,27 @@ function headerChange() {
     }
 }
 
-function display(){
+function display() {
+    var blog = document.getElementById('welcomePage');
+    var box1 = new Vue({
+        el:'#index-r',
+        data:{
+            seen:false
+        },
+        methods:{
+            mouseOver:function() {
+                this.seen = true;
+            },
+            mouseOut:function() {
+                this.seen = false;
+            }
+        }
+    });
     window.onload = function() {
         blog.style.maxHeight = 2/3 * blog.offsetWidth + 'px';
     }
     window.onresize = function() {
         blog.style.maxHeight = 2/3 * blog.offsetWidth + 'px';
-    }
-    drizzle.onmouseover = function() {
-        if(document.querySelectorAll('#display-img').length === 0){
-            var img = document.createElement('img');
-            img.id = 'display-img';
-            img.setAttribute('src', 'images/drizzle.png');
-            display1.appendChild(img);
-        }
-    }
-    
-    drizzle.onmouseout = function() {
-        var img = document.querySelector('#display-img');
-        display1.removeChild(img);
     }
 }
 
