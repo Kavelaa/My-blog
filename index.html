@@ -16,15 +16,16 @@
         <script src="scripts/vue.js"></script>
     </head>
     <body>
-        <header>
+        <header :style='headerStyle'>
             <div id='welcome' class='index-l'>
-                <h1>欢迎</h1>
+                <h1 :style='h10Style'>欢迎</h1>
             </div>
             <div id='blog' class='index-l'>
-                <h1><a href='https://blog.kavelaa.work'>我的Blog</a></h1>
+                <h1 :style='h11Style'><a href='https://blog.kavelaa.work'>我的Blog</a></h1>
             </div>
-            <div id='ad' @mouseover='mouseOver' @mouseout='mouseOut'>
-                <a href='https://blog.kavelaa.work/archives/31' target="blank">云翼计划(享优惠)Supported by Aliyun</a>
+            <div id='ad' ref='adDiv' :style='adStyle' @mouseover='mouseOver' @mouseout='mouseOut'>
+                <a href='https://blog.kavelaa.work/archives/31' target="blank">{{adContent}}</a>
+                <img id='ad-img' src='images/aliyun.png' v-if='seen'>
             </div>
         </header>
         <main>
