@@ -85,6 +85,7 @@ var welcomePage = new Vue({
     data:{
         welcomePageStyle:{
             boxShadow:String,
+            maxHeight:String
         },
     },
     methods:{
@@ -94,12 +95,19 @@ var welcomePage = new Vue({
             else
                 this.welcomePageStyle.boxShadow = ''; 
         },
+        resize:function() {
+            this.welcomePageStyle.maxHeight = 2/3 * this.$refs.welcomeDiv.offsetWidth + 'px';
+            console.log('rend suc')
+        },
         shadowValue:function() {
             return (document.documentElement.scrollTop - 100);
         }
     },
     mounted:function() {
-        window.addEventListener('scroll',this.scroll)
+        if(this.$refs.welcomeDiv.offsetWidth < 1081)
+        this.welcomePageStyle.maxHeight = 2/3 * this.$refs.welcomeDiv.offsetWidth + 'px';
+        window.addEventListener('scroll',this.scroll);
+        window.addEventListener('resize',this.resize);
     }
 });
 

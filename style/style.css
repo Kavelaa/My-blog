@@ -62,7 +62,7 @@ h2{
 header{
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 10;
     box-sizing: border-box;
     width:100%;
     line-height:6em;
@@ -159,11 +159,19 @@ header h1{
 /*main*/
 /*欢迎页（banner）*/
 #welcomePage{
-    position: relative;
     height: 100vh;
-    background: url(../images/山.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+#welcomePage img{
+    width:100%;
+}
+
+#welcomePage0{
+    position: relative;
+    height:100%;
+    overflow: hidden;
+    z-index: -1;
 }
 
 #welcomePageBlock0{
