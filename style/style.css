@@ -159,19 +159,22 @@ header h1{
 /*main*/
 /*欢迎页（banner）*/
 #welcomePage{
+    position: relative;
     height: 100vh;
-    z-index: 1;
 }
 
 #welcomePage img{
+    position: absolute;
+    top:0;
+    left:0;
     width:100%;
+    z-index:-1;
 }
 
 #welcomePage0{
-    position: relative;
     height:100%;
     overflow: hidden;
-    z-index: -1;
+    z-index:1;
 }
 
 #welcomePageBlock0{

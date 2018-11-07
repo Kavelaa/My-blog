@@ -84,16 +84,18 @@ var welcomePage = new Vue({
     el:'#welcomePage',
     data:{
         welcomePageStyle:{
-            boxShadow:String,
             maxHeight:String
         },
+        welcomePage0Style:{
+            boxShadow:String
+        }
     },
     methods:{
         scroll:function() {
             if (document.documentElement.scrollTop > 100)
-                this.welcomePageStyle.boxShadow = 'inset 0 -90vh ' + String(this.shadowValue()*0.8) + 'px rgba(0,0,0,' + String(0.15+this.shadowValue()/900) + ')';
+                this.welcomePage0Style.boxShadow = 'inset 0 -90vh ' + String(this.shadowValue()*0.8) + 'px rgba(0,0,0,' + String(0.15+this.shadowValue()/900) + ')';
             else
-                this.welcomePageStyle.boxShadow = ''; 
+                this.welcomePage0Style.boxShadow = ''; 
         },
         resize:function() {
             this.welcomePageStyle.maxHeight = 2/3 * this.$refs.welcomeDiv.offsetWidth + 'px';

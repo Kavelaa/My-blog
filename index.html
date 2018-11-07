@@ -23,13 +23,13 @@
         </header>
         <main>
             <div id='welcomePage' ref='welcomeDiv' :style='welcomePageStyle'>
-                <div id='welcomePage0'>
+                <div id='welcomePage0' :style='welcomePage0Style'>
                     <div id='welcomePageBlock0'>
                         <h1>天地无言，而通万物</h1>
-                        <p>WordPress博客页已搭建成功：移步<a href='https://blog.kavelaa.work' target="blank">此处</a></p>
+                        <p>WordPress博客页已搭建成功：移步<a href='https://blog.kavelaa.work' target='blank'>此处</a></p>
                     </div>
-                    <img src='images/山.jpg'>
                 </div>
+                <img src='images/山.jpg'>
             </div>
             <div id='contentPage'>
                 <div id='introduce'>
@@ -49,7 +49,7 @@
                         <h2>我的作品</h2>
                             <div id='box1' class='index-box' @mouseover='mouseOver' @mouseout='mouseOut'>
                                 <h2>
-                                    <a href='http://drizzle.one' target="blank">
+                                    <a href='http://drizzle.one' target='blank'>
                                         Drizzle<span style='font-size: 0.3em;vertical-align: middle;'>(Point)</span>
                                     </a>
                                 </h2>
