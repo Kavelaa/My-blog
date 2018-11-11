@@ -14,10 +14,10 @@ var header = new Vue({
             backgroundColor:'rgba(255,255,255,0)'*/
         },
         h10Style:{
-            //fontSize:4.1+'rem'
+            fontSize:String
         },
         h11Style:{
-            //fontSize:2.3+'rem'
+            fontSize:String
         },
         adStyle:{
             color:'rgba(255,255,255,0)',
@@ -36,7 +36,7 @@ var header = new Vue({
                 this.flag = false;
                 setTimeout(function(){
                     this.flag = true;
-                }.bind(this),100);  //限制scroll事件频繁触发回调操作,至于延迟过高导致功能不灵敏的原因不太清楚，经测试，和操作DOM的速度应该有比较大的关系。
+                }.bind(this),120);  //限制scroll事件频繁触发回调操作,至于延迟过高导致功能不灵敏的原因不太清楚，经测试，和操作DOM的速度应该有比较大的关系。
                 if (document.documentElement.scrollTop > 150) {
                     this.headerStyle = {
                         height: 7 + 'vh',
@@ -83,19 +83,22 @@ var header = new Vue({
 var welcomePage = new Vue({
     el:'#welcomePage',
     data:{
+        page0:'page0',
+        seen0:true,
+        seen1:false,
         welcomePageStyle:{
             maxHeight:String
         },
-        welcomePage0Style:{
+        welcomePageShadowStyle:{
             boxShadow:String
         }
     },
     methods:{
         scroll:function() {
             if (document.documentElement.scrollTop > 100)
-                this.welcomePage0Style.boxShadow = 'inset 0 -90vh ' + String(this.shadowValue()*0.8) + 'px rgba(0,0,0,' + String(0.15+this.shadowValue()/900) + ')';
+                this.welcomePageShadowStyle.boxShadow = 'inset 0 -90vh 0.7em rgba(0,0,0,' + String(0.15+this.shadowValue()/this.$refs.welcomeDiv.offsetHeight) + ')';
             else
-                this.welcomePage0Style.boxShadow = ''; 
+                this.welcomePageShadowStyle.boxShadow = ''; 
         },
         resize:function() {
             this.welcomePageStyle.maxHeight = 2/3 * this.$refs.welcomeDiv.offsetWidth + 'px';
@@ -105,9 +108,23 @@ var welcomePage = new Vue({
             return (document.documentElement.scrollTop - 100);
         }
     },
+    components:{
+        'page0':{
+            template:`
+            <div id='welcomePageBlock0' key='block'>
+                <h1>天地无言，而通万物</h1>
+                <p>WordPress博客页已搭建：移步<a href='https://blog.kavelaa.work' target='blank'>此处</a></p>
+            </div>
+            `
+        }
+    },
     mounted:function() {
         if(this.$refs.welcomeDiv.offsetWidth < 1081)
         this.welcomePageStyle.maxHeight = 2/3 * this.$refs.welcomeDiv.offsetWidth + 'px';
+        setInterval(function() {
+            this.seen0 = !this.seen0;
+            this.seen1 = !this.seen1;
+        }.bind(this),7000);
         window.addEventListener('scroll',this.scroll);
         window.addEventListener('resize',this.resize);
     }
@@ -127,10 +144,4 @@ var box1 = new Vue({
             this.seen = false;
         }
     }
-});    
-    /*window.onload = function() {
-        welcomePage.style.maxHeight = 2/3 * welcomePage.offsetWidth + 'px';
-    }
-    window.onresize = function() {
-        welcomePage.style.maxHeight = 2/3 * welcomePage.offsetWidth + 'px';
-    }*/
+})    

@@ -23,13 +23,16 @@
         </header>
         <main>
             <div id='welcomePage' ref='welcomeDiv' :style='welcomePageStyle'>
-                <div id='welcomePage0' :style='welcomePage0Style'>
-                    <div id='welcomePageBlock0'>
+                <transition-group name='fade' tag='div'>
+                    <component :is='page0' key='content'></component>
+                    <!--<div id='welcomePageBlock0' key='block'>
                         <h1>天地无言，而通万物</h1>
-                        <p>WordPress博客页已搭建成功：移步<a href='https://blog.kavelaa.work' target='blank'>此处</a></p>
-                    </div>
-                </div>
-                <img src='images/山.jpg'>
+                        <p>WordPress博客页已搭建：移步<a href='https://blog.kavelaa.work' target='blank'>此处</a></p>
+                    </div>-->
+                    <img src='images/mountain0.jpg' v-if='seen0' key='img0'>
+                    <img src='images/mountain1.jpg' v-if='seen1' key='img1'>
+                </transition-group>
+                <div id='welcomePageShadow' :style='welcomePageShadowStyle'></div>
             </div>
             <div id='contentPage'>
                 <div id='introduce'>
