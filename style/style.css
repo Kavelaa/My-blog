@@ -105,7 +105,7 @@ header h1{
 }
 
 .index-l a:hover{
-    color:rgba(197, 197, 197, 0.7);
+    opacity: 0.5;
 }
 
 #blog h1{
@@ -165,7 +165,7 @@ header h1{
 }
 
 .fade-enter-active, .fade-leave-active {
-    transition: opacity 2s;
+    transition: opacity 1.5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
@@ -188,7 +188,7 @@ header h1{
     z-index: -1;
 }
 
-#welcomePageBlock0{
+#welcomePageBlock{
     position: absolute;
     top:30%;
     left:0;
@@ -198,13 +198,13 @@ header h1{
     -webkit-user-select: none;
 }
 
-#welcomePageBlock0 h1{
+#welcomePageBlock h1{
     font-size: 6em;
     padding:0.5em;
     clear: both;
 }
 
-#welcomePageBlock0 p{
+#welcomePageBlock p{
     font-size: 2em;
     padding:1.2em;
     margin:0;
@@ -219,6 +219,34 @@ header h1{
     color:rgb(255, 255, 255);
 }
 
+#toggleButton{
+    position: absolute;
+    left:0;
+    right:0;
+    bottom: 3em;
+    margin:0 auto;
+    cursor: pointer;
+    color:rgba(255, 255, 255, 0.9);
+    font-size: 2.5em;
+    text-align: center;
+    width: 3em;
+}
+
+#toggleButton:hover{
+    opacity: 0.65;
+}
+/*画布*/
+#toggle{    
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
+}
+
+#toggle:hover{
+    opacity: 0.8;
+}
 
 
 
@@ -264,7 +292,7 @@ header h1{
 
 #index-r > h2{
     float: left;
-    padding:1em 1em 1em 2em;
+    padding:1em 1em 1em 1.5em;
 }
 
 .index-box{
@@ -350,13 +378,17 @@ footer a{
     height:4em;
     line-height: 2em;
     padding:1em 1.4em;
-    color:white;
+    color:black;
     font-size: 1em;
     font-family: 'Maven Pro';
 }
 
 #aliyun{
     background: #252a2f;
+}
+
+#vueIco{
+    background: white;
 }
 
 #brave{

@@ -25,13 +25,13 @@ var header = new Vue({
         },
     },
     methods:{
-        mouseOver:function() {
+        mouseOver:function () {
             this.seen = true;
         },
-        mouseOut:function() {
+        mouseOut:function () {
             this.seen = false;
         },
-        scroll:function() {
+        scroll:function () {
             if(this.flag) {
                 this.flag = false;
                 setTimeout(function(){
@@ -83,9 +83,10 @@ var header = new Vue({
 var welcomePage = new Vue({
     el:'#welcomePage',
     data:{
-        page0:'page0',
+        page:'page0',
         seen0:true,
         seen1:false,
+        per:0,
         welcomePageStyle:{
             maxHeight:String
         },
@@ -94,53 +95,96 @@ var welcomePage = new Vue({
         }
     },
     methods:{
-        scroll:function() {
+        scroll:function () {
             if (document.documentElement.scrollTop > 100)
                 this.welcomePageShadowStyle.boxShadow = 'inset 0 -90vh 0.7em rgba(0,0,0,' + String(0.15+this.shadowValue()/this.$refs.welcomeDiv.offsetHeight) + ')';
             else
                 this.welcomePageShadowStyle.boxShadow = ''; 
         },
-        resize:function() {
+        resize:function () {
             this.welcomePageStyle.maxHeight = 2/3 * this.$refs.welcomeDiv.offsetWidth + 'px';
             console.log('rend suc')
         },
-        shadowValue:function() {
+        shadowValue:function () {
             return (document.documentElement.scrollTop - 100);
+        },
+        imgToggle:function () {
+            var that = this,
+            ctx = document.getElementById('toggle').getContext('2d'),
+            w = 300,
+            h = 100,
+            color = 'rgb(255,255,255)';
+            function f5() {
+                if(that.per == 200) {
+                    that.per = 0;
+                    that.seen0 = !that.seen0;
+                    that.seen1 = !that.seen1;
+                    if(that.page =='page0')
+                        that.page = 'page1';
+                    else
+                        that.page = 'page0';
+                }
+                ctx.clearRect(0, 0, w, h);
+                ctx.beginPath();    
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 4;
+                ctx.moveTo(0,h/2);
+                ctx.lineTo(w/200*that.per,h/2);
+                that.per += 1;
+                ctx.stroke();
+            };
+            var interval = setInterval(function () {
+                f5();
+            },50);
+        },
+        imgCut:function () {
+            this.per = 0;
+            this.seen0 = !this.seen0;
+            this.seen1 = !this.seen1;
+            if(this.page =='page0')
+                this.page = 'page1';
+            else
+                this.page = 'page0';
         }
     },
     components:{
         'page0':{
             template:`
-            <div id='welcomePageBlock0' key='block'>
+            <div key='block'>
                 <h1>天地无言，而通万物</h1>
                 <p>WordPress博客页已搭建：移步<a href='https://blog.kavelaa.work' target='blank'>此处</a></p>
             </div>
             `
+        },
+        'page1':{
+            template:`
+                <div key='block'>
+                    <h1>test</h1>
+                </div>
+            `
         }
     },
-    mounted:function() {
+    mounted:function () {
         if(this.$refs.welcomeDiv.offsetWidth < 1081)
-        this.welcomePageStyle.maxHeight = 2/3 * this.$refs.welcomeDiv.offsetWidth + 'px';
-        setInterval(function() {
-            this.seen0 = !this.seen0;
-            this.seen1 = !this.seen1;
-        }.bind(this),7000);
+            this.welcomePageStyle.maxHeight = 2/3 * this.$refs.welcomeDiv.offsetWidth + 'px';
+        else 
+            this.imgToggle();
         window.addEventListener('scroll',this.scroll);
         window.addEventListener('resize',this.resize);
     }
 });
 
-//box1----------------------------------------------------------------
-var box1 = new Vue({
+//box----------------------------------------------------------------
+var box = new Vue({
     el:'#index-r',
     data:{
         seen:false
     },
     methods:{
-        mouseOver:function() {
+        mouseOver:function () {
             this.seen = true;
         },
-        mouseOut:function() {
+        mouseOut:function () {
             this.seen = false;
         }
     }

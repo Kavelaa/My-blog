@@ -17,15 +17,15 @@
                 <h1 :style='h11Style'><a href='https://blog.kavelaa.work'>我的Blog</a></h1>
             </div>
             <div id='ad' ref='adDiv' :style='adStyle' @mouseover='mouseOver' @mouseout='mouseOut'>
-                <a href='https://blog.kavelaa.work/archives/31' target="blank">{{adContent}}</a>
-                <img id='ad-img' src='images/aliyun.png' v-if='seen'>
+                <a href='https://blog.kavelaa.work/archives/31' target='_blank'>{{adContent}}</a>
+                <img id='ad-img' src='images/aliyunplan.png' v-if='seen'>
             </div>
         </header>
         <main>
             <div id='welcomePage' ref='welcomeDiv' :style='welcomePageStyle'>
                 <transition-group name='fade' tag='div'>
-                    <component :is='page0' key='content'></component>
-                    <!--<div id='welcomePageBlock0' key='block'>
+                    <component id='welcomePageBlock' :is='page' key='content'></component>
+                    <!--<div id='welcomePageBlock' key='block'>
                         <h1>天地无言，而通万物</h1>
                         <p>WordPress博客页已搭建：移步<a href='https://blog.kavelaa.work' target='blank'>此处</a></p>
                     </div>-->
@@ -33,6 +33,8 @@
                     <img src='images/mountain1.jpg' v-if='seen1' key='img1'>
                 </transition-group>
                 <div id='welcomePageShadow' :style='welcomePageShadowStyle'></div>
+                <div id='toggleButton' @click='imgCut'>▶</div>
+                <canvas id='toggle' width='300' height='100'></canvas>
             </div>
             <div id='contentPage'>
                 <div id='introduce'>
@@ -50,14 +52,14 @@
                 <div id='myWorks'>
                     <div id='index-r'>
                         <h2>我的作品</h2>
-                            <div id='box1' class='index-box' @mouseover='mouseOver' @mouseout='mouseOut'>
-                                <h2>
-                                    <a href='http://drizzle.one' target='blank'>
-                                        Drizzle<span style='font-size: 0.3em;vertical-align: middle;'>(Point)</span>
-                                    </a>
-                                </h2>
-                            </div>
-                            <img v-if='seen' id='display-img' src='images/drizzle.png'>
+                        <div id='box1' class='index-box' @mouseover='mouseOver' @mouseout='mouseOut'>
+                            <h2>
+                                <a href='http://drizzle.one' target='_blank'>
+                                    Drizzle<span style='font-size: 0.3em;vertical-align: middle;'>(Point)</span>
+                                </a>
+                            </h2>
+                        </div>
+                        <img v-if='seen' id='display-img' src='images/drizzle.png'>
                     </div>
                     <div class='over'></div>
                 </div>
@@ -73,27 +75,33 @@
         </div>
         <footer>
             <div class='footerDiv' id='aliyun'> 
-                <a href='https://aliyun.com' target='blank'>
-                    <img src="https://img.alicdn.com/tps/TB16hl5LpXXXXXRXVXXXXXXXXXX-198-46.png" style='height:100%;'>
+                <a href='https://aliyun.com' target='_blank'>
+                    <img src='images/aliyunico.png' style='height:100%;'>
+                </a>
+            </div>
+            <div class='footerDiv' id='vueIco'>
+                <a href='https://cn.vuejs.org' target='_blank'>
+                    <img src='images/vue.png' style='height:100%;'>
+                    <span style='font-size:1.6em; font-weight:420; vertical-align:top'>Vue.js</span>
                 </a>
             </div>
             <div id='braveReferral'>
-                <a href='https://brave.com/kav051' target='blank'>
+                <a href='https://brave.com/kav051' target='_blank'>
                     <img style='height:100%' src='images/brave.png'>
                 </a>
             </div>
             <div class='footerDiv' id='brave'>
-                <a  href='https://brave.com' target='blank'>
+                <a href='https://brave.com' target='_blank'>
                     <img src='images/brave.svg' style='height:100%' title="本网站已通过Brave Publisher认证">
                 </a>
             </div>
             <div class='over'></div>    
             <p class='copyright'>© 2018 kavelaa.work.All Rights Reserved.</p>
             <div style="width:auto;margin:0 auto;height: 22px;">
-                <a href='http://www.miitbeian.gov.cn/' target="blank" style="color:#939393;display:inline;">蜀ICP备18024791号</a>
+                <a href='http://www.miitbeian.gov.cn/' target="_blank" style="color:#939393;display:inline;">蜀ICP备18024791号</a>
                 <a target="_blank" href="http://www.beian.gov.cn" style="display:inline;text-decoration:none;line-height:21px;"><img align='absmiddle' src="images/备案图标.png"/><p style="display:inline-block;height:20px;margin: 0px 0px 0px 2px; color:#939393;">川公网安备 51010702001163号</p></a>
             </div>
         </footer>
-        <script src='scripts/display-image.js'></script>
+        <script src='scripts/display.js'></script>
     </body>
 </html>
