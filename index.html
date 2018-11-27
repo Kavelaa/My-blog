@@ -25,16 +25,15 @@
             <div id='welcomePage' ref='welcomeDiv' :style='welcomePageStyle'>
                 <transition-group name='fade' tag='div'>
                     <component id='welcomePageBlock' :is='page' key='content'></component>
-                    <!--<div id='welcomePageBlock' key='block'>
-                        <h1>天地无言，而通万物</h1>
-                        <p>WordPress博客页已搭建：移步<a href='https://blog.kavelaa.work' target='blank'>此处</a></p>
-                    </div>-->
-                    <img src='images/mountain0.jpg' v-if='seen0' key='img0'>
-                    <img src='images/mountain1.jpg' v-if='seen1' key='img1'>
+                    <component :is='img' key='img'></component>
                 </transition-group>
                 <div id='welcomePageShadow' :style='welcomePageShadowStyle'></div>
-                <div id='toggleButton' @click='imgCut'>▶</div>
-                <canvas id='toggle' width='300' height='100'></canvas>
+                <div id='toggleButton' @click='pageCut'>></div>
+                <div id='pageProgress'>
+                    <progress-bar id='bar0'></progress-bar>
+                    <progress-bar id='bar1'></progress-bar>
+                    <progress-bar id='bar2'></progress-bar>
+                </div>
             </div>
             <div id='contentPage'>
                 <div id='introduce'>
@@ -59,7 +58,7 @@
                                 </a>
                             </h2>
                         </div>
-                        <img v-if='seen' id='display-img' src='images/drizzle.png'>
+                        <img v-if='myWorksImgSeen' id='display-img' src='images/drizzle.png'>
                     </div>
                     <div class='over'></div>
                 </div>
@@ -82,7 +81,7 @@
             <div class='footerDiv' id='vueIco'>
                 <a href='https://cn.vuejs.org' target='_blank'>
                     <img src='images/vue.png' style='height:100%;'>
-                    <span style='font-size:1.6em; font-weight:420; vertical-align:top'>Vue.js</span>
+                    <span style='color:black; font-size:1.6em; font-weight:420; vertical-align:top'>Vue.js</span>
                 </a>
             </div>
             <div id='braveReferral'>

@@ -179,6 +179,24 @@ header h1{
     z-index:-1;
 }
 
+#welcomePage video{
+    position: absolute;
+    top:-5%;
+    z-index: -1;
+}
+
+#pageProgress{
+    position: absolute;
+    bottom:0;
+    display: flex;
+}
+
+#pageProgress div{
+    flex: 1;
+    height: 6px;
+    line-height: 0;
+}
+
 #welcomePageShadow{
     position: absolute;
     top:0;
@@ -223,7 +241,7 @@ header h1{
     position: absolute;
     left:0;
     right:0;
-    bottom: 3em;
+    bottom: 2em;
     margin:0 auto;
     cursor: pointer;
     color:rgba(255, 255, 255, 0.9);
@@ -235,19 +253,6 @@ header h1{
 #toggleButton:hover{
     opacity: 0.65;
 }
-/*画布*/
-#toggle{    
-    position:absolute;
-    bottom:0;
-    left:0;
-    right:0;
-    margin:auto;
-}
-
-#toggle:hover{
-    opacity: 0.8;
-}
-
 
 
 /*内容页*/
@@ -380,7 +385,7 @@ footer a{
     padding:1em 1.4em;
     color:black;
     font-size: 1em;
-    font-family: 'Maven Pro';
+    font-family: 'Maven Pro'; 
 }
 
 #aliyun{

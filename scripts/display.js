@@ -79,14 +79,16 @@ var header = new Vue({
     }
 });
 
-//banner------------------------------------------------------------------
-var welcomePage = new Vue({
-    el:'#welcomePage',
+//main------------------------------------------------------------------
+var main = new Vue({
+    el:'main',
     data:{
         page:'page0',
-        seen0:true,
-        seen1:false,
+        img:'img0',
+        interval:Number,
         per:0,
+        flag:0,
+        myWorksImgSeen:false,
         welcomePageStyle:{
             maxHeight:String
         },
@@ -108,84 +110,129 @@ var welcomePage = new Vue({
         shadowValue:function () {
             return (document.documentElement.scrollTop - 100);
         },
-        imgToggle:function () {
-            var that = this,
-            ctx = document.getElementById('toggle').getContext('2d'),
-            w = 300,
-            h = 100,
-            color = 'rgb(255,255,255)';
-            function f5() {
-                if(that.per == 200) {
-                    that.per = 0;
-                    that.seen0 = !that.seen0;
-                    that.seen1 = !that.seen1;
-                    if(that.page =='page0')
-                        that.page = 'page1';
-                    else
-                        that.page = 'page0';
-                }
-                ctx.clearRect(0, 0, w, h);
-                ctx.beginPath();    
-                ctx.strokeStyle = color;
-                ctx.lineWidth = 4;
-                ctx.moveTo(0,h/2);
-                ctx.lineTo(w/200*that.per,h/2);
-                that.per += 1;
-                ctx.stroke();
-            };
-            var interval = setInterval(function () {
-                f5();
-            },50);
-        },
-        imgCut:function () {
+        pageCut:function () {
             this.per = 0;
-            this.seen0 = !this.seen0;
-            this.seen1 = !this.seen1;
-            if(this.page =='page0')
-                this.page = 'page1';
-            else
-                this.page = 'page0';
+            this.flag += 1;
+            if(this.flag > 2) {
+                this.flag = 0;
+            }
+            this.page = 'page' + this.flag;
+            this.img = 'img' + this.flag;
+        },
+        mouseOver:function () {
+            this.myWorksImgSeen = true;
+        },
+        mouseOut:function () {
+            this.myWorksImgSeen = false;
         }
     },
     components:{
         'page0':{
             template:`
-            <div key='block'>
+            <div>
                 <h1>天地无言，而通万物</h1>
                 <p>WordPress博客页已搭建：移步<a href='https://blog.kavelaa.work' target='blank'>此处</a></p>
             </div>
             `
         },
+        'img0':{
+            template:'<img src="images/mountain0.jpg"/>'
+        },
         'page1':{
             template:`
-                <div key='block'>
+                <div>
                     <h1>test</h1>
                 </div>
             `
+        },
+        'img1':{
+            template:'<img src="images/mountain1.jpg"/>'
+        },
+        'page2':{
+            template:`
+                <div>
+                    <h1>生为出众，何必费力合群</h1>
+                    <p>
+                        <a style='text-decoration:none;' href='https://www.bilibili.com/video/av36582243/' target='_blank'>▷</a>
+                        《Stand Out Fit In》 - ONE OK ROCK
+                    </p>
+                </div>
+            `
+        },
+        'img2':{
+            template:`
+                <video autoplay loop width='100%'>
+                    <source src='images/SOFI.webm' type='video/webm' />
+                </video>
+            `
+        },
+        'progressBar':{
+            props:['id'],
+            data:function () {
+                    return{
+                        width:Number,
+                        height:4
+                    }
+            },
+            template:`
+                <div>
+                    <canvas :id='id' ref='ctx' :width='width' :height='height'></canvas>
+                </div>
+            `,
+            methods:{
+                pageToggle:function () {
+                    var that = this.$root,
+                    ctx = this.$refs.ctx.getContext('2d');
+                    ctx.clearRect(0, 0, this.width, this.height);
+                    if(that.per < 200) {
+                        ctx.beginPath();    
+                        ctx.strokeStyle = 'rgb(255,255,255)';
+                        ctx.lineWidth = 3;
+                        ctx.moveTo(0, this.height / 2);
+                        ctx.lineTo(this.width/200*that.per, this.height / 2);
+                        ctx.stroke();
+                    }
+                },
+            },
+            mounted() {
+                var ctx = this.$refs.ctx.getContext('2d');
+                this.width = this.$root.$refs.welcomeDiv.offsetWidth / 3;
+                var interval = setInterval(function() {
+                    if(this.id == 'bar' + String(this.$root.flag)) {
+                        this.pageToggle();
+                    }
+                    else {
+                        ctx.clearRect(0, 0, this.width, this.height);
+                        ctx.beginPath();
+                        ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+                        ctx.lineWidth = 3;
+                        ctx.moveTo(0, this.height / 2);
+                        ctx.lineTo(this.width, this.height / 2);
+                        ctx.stroke();
+                    }
+                }.bind(this),25);
+            },
         }
     },
     mounted:function () {
         if(this.$refs.welcomeDiv.offsetWidth < 1081)
             this.welcomePageStyle.maxHeight = 2/3 * this.$refs.welcomeDiv.offsetWidth + 'px';
-        else 
-            this.imgToggle();
+        else {
+            var interval = setInterval(function () {
+                if(this.per == 200) {
+                    this.per = 0;
+                    this.flag += 1;
+                    if(this.flag > 2) {
+                        this.flag = 0;
+                    }
+                    this.page = 'page' + this.flag;
+                    this.img = 'img' + this.flag;
+                }
+                this.per += 1;
+            }.bind(this),50);
+            this.interval = interval;
+        }
         window.addEventListener('scroll',this.scroll);
         window.addEventListener('resize',this.resize);
     }
-});
-
-//box----------------------------------------------------------------
-var box = new Vue({
-    el:'#index-r',
-    data:{
-        seen:false
-    },
-    methods:{
-        mouseOver:function () {
-            this.seen = true;
-        },
-        mouseOut:function () {
-            this.seen = false;
-        }
-    }
-})    
+})
