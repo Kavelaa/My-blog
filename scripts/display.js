@@ -191,6 +191,9 @@ var main = new Vue({
                         ctx.moveTo(0, this.height / 2);
                         ctx.lineTo(this.width/200*that.per, this.height / 2);
                         ctx.stroke();
+                        ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+                        ctx.lineTo(this.width * 199 / 200, this.height / 2);
+                        ctx.stroke();
                     }
                 },
             },
